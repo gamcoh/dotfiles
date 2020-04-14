@@ -185,7 +185,7 @@ local awesome_overrides = function(theme)
 	theme.taglist_bg_empty = theme.background .. '99'
 	theme.taglist_bg_occupied =  '#ffffff' .. '1A'
 	theme.taglist_bg_urgent = "#E91E63" .. '99'
-	theme.taglist_bg_focus = theme.background
+	theme.taglist_bg_focus = "#008080" .. '60'
 	theme.taglist_spacing = dpi(0)
 
 	-- Tasklist
