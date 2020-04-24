@@ -104,6 +104,7 @@ source $ZSH/oh-my-zsh.sh
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+alias glc="glances"
 alias gitdot="git --git-dir=$HOME/dotfiles --work-tree=$HOME"
 
 source /usr/share/zsh-theme-powerlevel10k/powerlevel10k.zsh-theme
