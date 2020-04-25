@@ -9,6 +9,7 @@ return {
 	-- The default applications in keybindings and widgets
 	default = {
 		terminal 										= 'kitty',                                  -- Terminal Emulator
+		vpn									= 'nordvpn',                                  -- Default VPN
 		text_editor 									= 'code',                                  -- GUI Text Editor
 		web_browser 									= 'chromium',                                -- Web browser
 		file_manager 									= 'dolphin',                                -- GUI File manager

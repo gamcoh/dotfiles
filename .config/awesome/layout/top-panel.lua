@@ -292,6 +292,7 @@ local TopPanel = function(s, offset)
 
 	s.tray_toggler  = require('widget.tray-toggler')
 	s.updater 		= require('widget.package-updater')()
+	s.nordvpn 		= require('widget.nordvpn')()
 	s.screen_rec 	= require('widget.screen-recorder')()
 	-- s.music       	= require('widget.music')()
 	s.bluetooth   	= require('widget.bluetooth')()
@@ -320,8 +321,9 @@ local TopPanel = function(s, offset)
 			},
 			s.tray_toggler,
 			s.updater,
+			s.nordvpn,
 			s.screen_rec,
-			s.music,
+			-- s.music,
 			s.bluetooth,
 			s.wifi,
 			s.battery,
