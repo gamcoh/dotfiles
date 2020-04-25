@@ -15,6 +15,7 @@ return {
 	sandbox 			= dir .. 'tag-list/' .. 'sandbox.svg',
 	terminal 			= dir .. 'tag-list/' .. 'terminal.svg',
 	graphics 			= dir .. 'tag-list/' .. 'graphics.svg',
+	discord 			= dir .. 'tag-list/' .. 'discord.svg',
 	menu 				= dir .. 'tag-list/' .. 'menu.svg',
 	close_small 		= dir .. 'tag-list/' .. 'close-small.svg',
 

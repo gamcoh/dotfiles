@@ -42,9 +42,9 @@ local tags = {
 		screen = 1
 	},
 	{
-		icon = icons.graphics,
-		type = 'art',
-		default_app = 'gimp-2.10',
+		icon = icons.discord,
+		type = 'social',
+		default_app = 'discord',
 		screen = 1
 	},
 	{
@@ -59,12 +59,6 @@ local tags = {
 		default_app = '',
 		screen = 1
 	}
-	-- {
-	--   icon = icons.social,
-	--   type = 'social',
-	--   default_app = 'discord',
-	--   screen = 1
-	-- }
 }
 
 
