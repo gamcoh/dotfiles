@@ -523,6 +523,11 @@ local locker = function(s)
 				check_caps()
 			end
 
+      -- If the input is empty, let the user type again
+      if input_password == nil then
+        return
+      end
+
 			if not type_again then
 				return
 			end
@@ -537,14 +542,14 @@ local locker = function(s)
 				if input_password ~= nil then
 					pam_auth = pam:auth_current_user(input_password)
 				end
-				if pam_auth then
-					-- Come in!
-					self:stop()
-					generalkenobi_ohhellothere()
-				else
-					-- F*ck off, you [REDACTED]!
-					stoprightthereyoucriminalscum()
-				end
+        if pam_auth then
+          -- Come in!
+          self:stop()
+          generalkenobi_ohhellothere()
+        else
+          -- F*ck off, you [REDACTED]!
+          stoprightthereyoucriminalscum()
+        end
 
 				input_password = nil
 			end
