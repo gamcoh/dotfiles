@@ -26,6 +26,7 @@ set background=dark
 hi Normal guibg=NONE ctermbg=NONE
 
 call plug#begin('~/.vim/plugged')
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'sillybun/vim-repl'
 Plug 'SamTebbs33/vim-exec'
 Plug 'pangloss/vim-javascript'
@@ -63,3 +64,6 @@ command! -bang -nargs=? -complete=dir Files
     \ call fzf#vim#files(<q-args>, {'options': ['--preview',
     \ '~/.vim/plugged/fzf.vim/bin/preview.sh {}']}, <bang>0)
 
+source ~/.cocrc
+
+highlight Pmenu ctermbg=darkgrey guibg=darkgrey
