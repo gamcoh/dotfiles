@@ -21,7 +21,7 @@ local home_widget =	wibox.widget {
 local home_button = wibox.widget {
 	{
 		home_widget,
-		margins = dpi(10),
+		margins = dpi(6),
 		widget = wibox.container.margin
 	},
 	widget = clickable_container

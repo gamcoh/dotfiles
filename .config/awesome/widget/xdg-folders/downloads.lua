@@ -21,7 +21,7 @@ local dl_widget = wibox.widget {
 local downloads_button = wibox.widget {
 	{
 		dl_widget,
-		margins = dpi(10),
+		margins = dpi(6),
 		widget = wibox.container.margin
 	},
 	widget = clickable_container

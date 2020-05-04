@@ -5,8 +5,8 @@ local apps = require('configuration.apps')
 local dpi = require('beautiful').xresources.apply_dpi
 
 local left_panel = function(screen)
-	
-	local action_bar_width = dpi(45)
+
+	local action_bar_width = dpi(35)
 	local panel_content_width = dpi(350)
 
 	local panel =
@@ -52,7 +52,7 @@ local left_panel = function(screen)
 				panel:toggle()
 			end
 		)
-		
+
 		-- Hide panel content if rofi web search is opened
 		panel:get_children_by_id('panel_content')[1].visible = false
 	end

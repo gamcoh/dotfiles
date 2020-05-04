@@ -50,7 +50,7 @@ local trash_menu = awful.menu({
 local trash_button = wibox.widget {
 	{
 		trash_widget,
-		margins = dpi(10),
+		margins = dpi(6),
 		widget = wibox.container.margin
 	},
 	widget = clickable_container
