@@ -21,6 +21,7 @@ set tabstop=2
 set softtabstop=2
 set shiftwidth=2
 set notermguicolors
+set background=dark
 
 hi Normal guibg=NONE ctermbg=NONE
 
@@ -36,10 +37,13 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'posva/vim-vue'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
 Plug 'junegunn/fzf.vim'
+Plug 'rakr/vim-one'
 call plug#end()
 
-let g:airline_theme='solarized'
-let g:airline_solarized_bg='darker'
+colorscheme one
+let g:airline#extensions#tabline#enabled = 1
+let g:airline_theme='one'
+let g:airline_powerline_fonts = 1
 let g:repl_program = {
             \   'python': 'bpython',
             \   'default': 'zsh',
@@ -53,7 +57,6 @@ if (has('termguicolors'))
 endif
 
 vnoremap <C-r> "hy:%s/<C-r>h//gc<left><left><left>
-nnoremap <leader><leader>r :REPLToggle<Cr>
 map <silent> <c-p> <ESC> :Files<cr>
 
 command! -bang -nargs=? -complete=dir Files
