@@ -23,8 +23,6 @@ set shiftwidth=2
 set notermguicolors
 set background=dark
 
-hi Normal guibg=NONE ctermbg=NONE
-
 call plug#begin('~/.vim/plugged')
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'sillybun/vim-repl'
@@ -42,6 +40,7 @@ Plug 'rakr/vim-one'
 call plug#end()
 
 colorscheme one
+
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_theme='one'
 let g:airline_powerline_fonts = 1
@@ -54,11 +53,11 @@ let g:repl_program = {
             \   }
 let g:repl_position=3
 
-if (has('termguicolors'))
-endif
-
 vnoremap <C-r> "hy:%s/<C-r>h//gc<left><left><left>
-map <silent> <c-p> <ESC> :Files<cr>
+map <C-p> :Files<cr>
+map <C-o> :bn<cr>
+map <PageDown> :tabn<cr>
+map <PageUp> :tabp<cr>
 
 command! -bang -nargs=? -complete=dir Files
     \ call fzf#vim#files(<q-args>, {'options': ['--preview',
@@ -66,4 +65,4 @@ command! -bang -nargs=? -complete=dir Files
 
 source ~/.cocrc
 
-highlight Pmenu ctermbg=darkgrey guibg=darkgrey
+highlight Pmenu ctermbg=61 ctermfg=251

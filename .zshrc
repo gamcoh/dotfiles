@@ -10,6 +10,7 @@ fi
 
 # Path to your oh-my-zsh installation.
 export ZSH="/home/gamzer/.oh-my-zsh"
+export EDITOR="vim"
 
 # Set name of the theme to load --- if set to "random", it will
 # load a random theme each time oh-my-zsh is loaded, in which case,
@@ -106,6 +107,7 @@ source $ZSH/oh-my-zsh.sh
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias glc="glances"
 alias gitdot="git --git-dir=$HOME/dotfiles --work-tree=$HOME"
+alias mux='tmuxinator'
 
 # PLUGINS CONF
 export ZSH_WAKATIME_PROJECT_DETECTION=true
@@ -122,5 +124,7 @@ export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || pr
 [ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
 
 export PATH=$PATH:/home/gamzer/.local/bin
+export PATH="`ruby -e 'puts Gem.user_dir'`/bin:$PATH"
+export PATH="$PATH:/home/gamzer/flutter/bin"
 
 bindkey -v
