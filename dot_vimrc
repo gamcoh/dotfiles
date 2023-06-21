@@ -1,0 +1,84 @@
+filetype off
+set nocompatible
+set clipboard=unnamedplus
+set nu
+set mouse=a
+"set tabstop=4
+"set shiftwidth=4
+"set expandtab
+set relativenumber
+set hidden
+set nobackup
+set nowritebackup
+set cmdheight=2
+set updatetime=300
+set shortmess+=c
+set encoding=UTF-8
+set showcmd
+set expandtab
+"set tabstop=2
+"set softtabstop=2
+set shiftwidth=2
+
+call plug#begin('~/.vim/plugged')
+Plug 'tpope/vim-surround'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+Plug 'sillybun/vim-repl'
+Plug 'SamTebbs33/vim-exec'
+Plug 'pangloss/vim-javascript'
+Plug 'tpope/vim-sensible'
+Plug 'leafgarland/typescript-vim'
+Plug 'tpope/vim-fugitive'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'posva/vim-vue'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
+Plug 'rakr/vim-one'
+Plug 'ayu-theme/ayu-vim' " or other package manager
+call plug#end()
+
+if $TERM =~# '256color' && ( $TERM =~# '^screen'  || $TERM =~# '^tmux' )
+    let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+    let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+    set termguicolors
+endif
+let ayucolor="mirage"   " for dark version of theme
+colorscheme ayu
+
+let g:airline#extensions#tabline#enabled = 1
+let g:airline_theme='one'
+let g:airline_powerline_fonts = 1
+let g:repl_program = {
+            \   'python': 'bpython',
+            \   'default': 'zsh',
+            \   'r': 'R',
+            \   'lua': 'lua',
+            \   'vim': 'vim -e',
+            \   }
+let g:repl_position=3
+
+vnoremap <C-r> "hy:%s/<C-r>h//gc<left><left><left>
+map <C-p> :Files<cr>
+map <C-o> :bn<cr>
+map <PageDown> :tabn<cr>
+map <PageUp> :tabp<cr>
+
+command! -bang -nargs=? -complete=dir Files
+    \ call fzf#vim#files(<q-args>, {'options': ['--preview',
+    \ '~/.vim/plugged/fzf.vim/bin/preview.sh {}']}, <bang>0)
+
+source ~/.cocrc
+
+highlight Pmenu ctermbg=61 ctermfg=251
+
+" Setting the leader key
+let mapleader=","
+
+function! WrapLine() range
+    execute a:firstline . ',' . a:lastline . "s/^\\(.*\\)$/'\\1',/"
+endfunction
+
+nnoremap <C-w>a :call WrapLine()<CR>
+vnoremap <C-w>a :'<,'>call WrapLine()<CR>
+xnoremap <C-w>a :'<,'>call WrapLine()<CR>
