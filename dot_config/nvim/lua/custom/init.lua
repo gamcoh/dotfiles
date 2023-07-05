@@ -56,3 +56,17 @@ vim.g.copilot_no_tab_map = true
 vim.g.copilot_assume_mapped = true
 vim.api.nvim_set_keymap("i", "<F2>", 'copilot#Accept("<CR>")', { silent = true, expr = true })
 
+
+-- Function to split lines
+function break_here()
+  local current_line = vim.api.nvim_get_current_line()
+  local split_line = vim.split(current_line, ',', true)
+  -- add a comma for each new line
+  for i=1, #split_line do
+    split_line[i] = split_line[i] .. ','
+    -- also trim whitespace before and after
+    split_line[i] = split_line[i]:gsub("^%s*(.-)%s*$", "%1")
+  end
+  vim.api.nvim_buf_set_lines(0, vim.api.nvim_win_get_cursor(0)[1]-1, vim.api.nvim_win_get_cursor(0)[1], false, split_line)
+end
+vim.keymap.set('n', '<leader>K', break_here, { noremap = true, silent = true })
