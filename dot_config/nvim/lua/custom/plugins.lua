@@ -5,6 +5,11 @@ local plugins = {
 
   -- Override plugin definition options
   {
+    "shortcuts/no-neck-pain.nvim",
+    version = "*",
+    cmd = "NoNeckPain",
+  },
+  {
     "folke/flash.nvim",
     event = "VeryLazy",
     opts = {},
@@ -116,6 +121,11 @@ local plugins = {
   {
     "nvim-treesitter/nvim-treesitter",
     opts = overrides.treesitter,
+  },
+
+  {
+    "itchyny/vim-cursorword",
+    lazy = false
   },
 
   {

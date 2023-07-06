@@ -70,3 +70,12 @@ function break_here()
   vim.api.nvim_buf_set_lines(0, vim.api.nvim_win_get_cursor(0)[1]-1, vim.api.nvim_win_get_cursor(0)[1], false, split_line)
 end
 vim.keymap.set('n', '<leader>K', break_here, { noremap = true, silent = true })
+
+
+-- Center the screen when moving up and down (in vim, it's :set so=999)
+vim.api.nvim_exec([[
+  augroup center_screen
+    autocmd!
+    autocmd CursorMoved * normal! zz
+  augroup END
+]], false)
