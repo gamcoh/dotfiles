@@ -2,7 +2,35 @@ local overrides = require("custom.configs.overrides")
 
 ---@type NvPluginSpec[]
 local plugins = {
+  {
+    "epwalsh/obsidian.nvim",
+    lazy = true,
+    event = { "BufReadPre /home/gamzer/Desktop/_code/obsidian-notes/**.md" },
+    dependencies = {
+      -- Required.
+      "nvim-lua/plenary.nvim",
 
+      -- Optional, for completion.
+      "hrsh7th/nvim-cmp",
+
+      -- Optional, for search and quick-switch functionality.
+      "nvim-telescope/telescope.nvim",
+    },
+    opts = overrides.obsidian,
+    config = function(_, opts)
+      require("obsidian").setup(opts)
+
+      -- Optional, override the 'gf' keymap to utilize Obsidian's search functionality.
+      -- see also: 'follow_url_func' config option above.
+      vim.keymap.set("n", "gf", function()
+        if require("obsidian").util.cursor_on_markdown_link() then
+          return "<cmd>ObsidianFollowLink<CR>"
+        else
+          return "gf"
+        end
+      end, { noremap = false, expr = true })
+    end,
+  },
   -- Override plugin definition options
   {
     "shortcuts/no-neck-pain.nvim",
@@ -58,30 +86,25 @@ local plugins = {
   },
   {
     'mg979/vim-visual-multi',
-    lazy = false
+    keys = {"<C-n>", "<C-Up>", "<C-Down>"},
   },
   {
     'MattesGroeger/vim-bookmarks',
-    lazy = false
+    keys = {"mm", "mi", "mn", "mp", "ma", "mc", "mx"}
   },
   {
-    'github/copilot.vim',
-    lazy = false,
+    "zbirenbaum/copilot.lua",
+    cmd = "Copilot",
+    event = "InsertEnter",
+    config = function()
+      require("copilot").setup({})
+    end,
   },
   {
     'puremourning/vimspector',
     cmd = { "VimspectorInstall", "VimspectorUpdate" },
     init = function ()
       require("custom.configs.vimspector").setup()
-    end,
-  },
-  {
-    'amirali/yapf.nvim',
-    cmd = "Yapf",
-    lazy = false,
-    dependencies = {'nvim-lua/plenary.nvim'},
-    config = function()
-      require('yapf').setup{}
     end,
   },
   {
@@ -92,7 +115,7 @@ local plugins = {
     config = function ()
       require "custom.configs.oil"
     end,
-    lazy = false
+    keys = {"-"}
   },
 
   {
@@ -129,23 +152,8 @@ local plugins = {
   },
 
   {
-    "easymotion/vim-easymotion",
-    opts = overrides.vimeasymotion,
-    lazy = false
-  },
-
-  {
     "nvim-tree/nvim-tree.lua",
     opts = overrides.nvimtree,
-  },
-
-  -- Install a plugin
-  {
-    "max397574/better-escape.nvim",
-    event = "InsertEnter",
-    config = function()
-      require("better_escape").setup()
-    end,
   },
 
   {
@@ -158,21 +166,6 @@ local plugins = {
     end,
     lazy = false
   },
-
-
-  -- To make a plugin not be loaded
-  -- {
-  --   "NvChad/nvim-colorizer.lua",
-  --   enabled = false
-  -- },
-
-  -- All NvChad plugins are lazy-loaded by default
-  -- For a plugin to be loaded, you will need to set either `ft`, `cmd`, `keys`, `event`, or set `lazy = false`
-  -- If you want a plugin to load on startup, add `lazy = false` to a plugin spec, for example
-  -- {
-  --   "mg979/vim-visual-multi",
-  --   lazy = false,
-  -- }
 }
 
 return plugins

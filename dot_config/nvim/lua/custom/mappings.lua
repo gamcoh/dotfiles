@@ -18,6 +18,10 @@ M.general = {
     ["<leader>dr"] = { "<cmd>call vimspector#Restart()<cr>", "Restart" },
     ["<leader>dx"] = { "<cmd>VimspectorReset<cr>", "Reset" },
     ["<leader>dH"] = { "<cmd>lua require('config.vimspector').toggle_human_mode()<cr>", "Toggle HUMAN mode" },
+
+    -- Obsidian plugin
+    ["<leader>ot"] = { "<cmd>ObsidianTemplate<cr>", "Create a new file based on the choosed template"},
+    ["<leader>of"] = { "<cmd>ObsidianSearch<cr>", "Search something in vault"}
   },
 }
 
