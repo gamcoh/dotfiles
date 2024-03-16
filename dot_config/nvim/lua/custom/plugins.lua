@@ -3,6 +3,44 @@ local overrides = require("custom.configs.overrides")
 ---@type NvPluginSpec[]
 local plugins = {
   {
+    "rust-lang/rust.vim",
+    ft = "rust",
+    init = function (_)
+      vim.g.rustfmt_autosave = 1
+    end
+  },
+  {
+    "cshuaimin/ssr.nvim",
+    -- Calling setup is optional.
+    keys = {
+      {
+        "<leader>rr",
+        mode = { "n", "x" },
+        function()
+          require("ssr").open()
+        end,
+        desc = "Structured Search and Replace",
+      },
+    },
+    config = function()
+      require("ssr").setup {
+        border = "rounded",
+        min_width = 50,
+        min_height = 5,
+        max_width = 120,
+        max_height = 25,
+        adjust_window = true,
+        keymaps = {
+          close = "q",
+          next_match = "n",
+          prev_match = "N",
+          replace_confirm = "<cr>",
+          replace_all = "<leader><cr>",
+        },
+      }
+    end
+  },
+  {
     "epwalsh/obsidian.nvim",
     lazy = true,
     event = { "BufReadPre /home/gamzer/Desktop/_code/obsidian-notes/**.md" },
@@ -94,10 +132,13 @@ local plugins = {
   },
   {
     "zbirenbaum/copilot.lua",
-    cmd = "Copilot",
     event = "InsertEnter",
     config = function()
-      require("copilot").setup({})
+      require("copilot").setup({
+        suggestion = {
+          auto_trigger = true
+        }
+      })
     end,
   },
   {

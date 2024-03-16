@@ -2,9 +2,10 @@ local on_attach = require("plugins.configs.lspconfig").on_attach
 local capabilities = require("plugins.configs.lspconfig").capabilities
 
 local lspconfig = require "lspconfig"
+local util = require "lspconfig/util"
 
 -- if you just want default config for the servers then put them in a table
-local servers = { "html", "cssls", "tsserver", "pylsp" }
+local servers = { "html", "cssls", "tsserver", "pylsp", "denols" }
 
 for _, lsp in ipairs(servers) do
   lspconfig[lsp].setup {
@@ -16,8 +17,14 @@ end
 lspconfig.rust_analyzer.setup {
   on_attach = on_attach,
   capabilities = capabilities,
-  cmd = {
-    "rustup", "run", "stable", "rust-analyzer"
+  filetypes = {"rust"},
+  root_dir = util.root_pattern("Cargo.toml"),
+  settings = {
+    ["rust-analyzer"] = {
+      cargo = {
+        allFeatures = true,
+      }
+    }
   }
 }
 
@@ -32,7 +39,7 @@ vim.keymap.set('n', '<space>q', vim.diagnostic.setloclist, opts)
 
 -- Use an on_attach function to only map the following keys
 -- after the language server attaches to the current buffer
-local on_attach = function(client, bufnr)
+local on_attach_custom = function(client, bufnr)
   -- Enable completion triggered by <c-x><c-o>
   vim.api.nvim_buf_set_option(bufnr, 'omnifunc', 'v:lua.vim.lsp.omnifunc')
 
@@ -60,7 +67,7 @@ end
 -- See: https://github.com/neovim/nvim-lspconfig/blob/master/doc/server_configurations.md#ruff_lsp
 -- For the default config, along with instructions on how to customize the settings
 lspconfig.ruff_lsp.setup {
-  on_attach = on_attach,
+  on_attach = on_attach_custom,
   init_options = {
     settings = {
       -- Any extra CLI arguments for `ruff` go here.
